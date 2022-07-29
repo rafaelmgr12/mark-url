@@ -9,6 +9,7 @@ func HandleRequest() {
 	router := gin.Default()
 	router.GET("/url", controllers.ShowURLs)
 	router.POST("/url", controllers.CreateUrl)
+	router.GET("/:short_url", controllers.HandleShortUrlRedirect)
 	router.NoRoute(controllers.RoutesNotFound)
 	router.Run(":8080")
 
