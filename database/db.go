@@ -14,8 +14,8 @@ var (
 )
 
 func DatabaseConnection() {
-	connectionString := "host=localhost user=root password=root dbname=root port=5432 sslmode=disable"
-	DB, err = gorm.Open(postgres.Open(connectionString))
+	connectionString := "host=database port=5432 user=root password=root dbname=root sslmode=disable"
+	DB, err = gorm.Open(postgres.Open(connectionString), &gorm.Config{})
 	if err != nil {
 		log.Println(err)
 	}
