@@ -19,6 +19,7 @@ func ShowURLs(c *gin.Context) {
 
 func CreateUrl(c *gin.Context) {
 	var url models.URL
+	var user models.User
 	host := "http://localhost:8080/"
 	if err := c.ShouldBindJSON(&url); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -33,7 +34,7 @@ func CreateUrl(c *gin.Context) {
 
 	id := uuid.New()
 	url.ID = id.String()
-	shortUrl := useCase.GenerateShortLink(url.URL, url.ID)
+	shortUrl := useCase.GenerateShortLink(url.URL, user.ID)
 	url.ShortURL = shortUrl
 	database.DB.Create(&url)
 	c.JSON(200, gin.H{
