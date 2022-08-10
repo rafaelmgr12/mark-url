@@ -4,7 +4,7 @@ COPY go.mod go.sum /go/src/github.com/rafaelmgr12/Mark-URL/
 WORKDIR /go/src/github.com/rafaelmgr12/Mark-URL
 RUN go mod download
 COPY . /go/src/github.com/rafaelmgr12/Mark-URL
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o build/mark github.com/rafaelmgr12/Mark-URL
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o build/mark github.com/rafaelmgr12/Mark-URL/cmd/main
 
 
 FROM alpine
