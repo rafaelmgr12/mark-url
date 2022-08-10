@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/rafaelmgr12/Mark-URL/database"
-	"github.com/rafaelmgr12/Mark-URL/models"
+	"github.com/rafaelmgr12/Mark-URL/pkg/database"
+	"github.com/rafaelmgr12/Mark-URL/pkg/models"
 )
 
 func showUser(c *gin.Context) {

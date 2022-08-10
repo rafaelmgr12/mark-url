@@ -6,7 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/rafaelmgr12/Mark-URL/database"
+	"github.com/rafaelmgr12/Mark-URL/pkg/database"
 	"github.com/rafaelmgr12/Mark-URL/pkg/models"
 	"github.com/rafaelmgr12/Mark-URL/pkg/useCase"
 )
