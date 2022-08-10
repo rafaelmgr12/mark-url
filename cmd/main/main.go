@@ -3,8 +3,8 @@ package main
 import (
 	"log"
 
-	"github.com/rafaelmgr12/Mark-URL/database"
-	"github.com/rafaelmgr12/Mark-URL/routes"
+	"github.com/rafaelmgr12/Mark-URL/pkg/database"
+	"github.com/rafaelmgr12/Mark-URL/pkg/routes"
 )
 
 func main() {

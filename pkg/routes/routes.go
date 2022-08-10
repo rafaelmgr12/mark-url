@@ -2,7 +2,7 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/rafaelmgr12/Mark-URL/controllers"
+	"github.com/rafaelmgr12/Mark-URL/pkg/controllers"
 )
 
 func HandleRequest() {

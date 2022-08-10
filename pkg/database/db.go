@@ -3,7 +3,7 @@ package database
 import (
 	"log"
 
-	"github.com/rafaelmgr12/Mark-URL/models"
+	"github.com/rafaelmgr12/Mark-URL/pkg/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

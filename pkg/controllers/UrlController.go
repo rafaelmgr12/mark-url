@@ -7,8 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/rafaelmgr12/Mark-URL/database"
-	"github.com/rafaelmgr12/Mark-URL/models"
-	"github.com/rafaelmgr12/Mark-URL/useCase"
+	"github.com/rafaelmgr12/Mark-URL/pkg/models"
+	"github.com/rafaelmgr12/Mark-URL/pkg/useCase"
 )
 
 func ShowURLs(c *gin.Context) {
