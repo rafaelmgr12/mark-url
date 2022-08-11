@@ -1,7 +1,6 @@
 package models
 
 import (
-	"gopkg.in/validator.v2"
 	"gorm.io/gorm"
 )
 
@@ -13,11 +12,4 @@ type URL struct {
 	Hits     int    `json:"hits" gorm:"default:0"`
 	UserID   string `json:"user_id" gorm:"not null"`
 	User     User
-}
-
-func UrlValidated(url *URL) error {
-	if err := validator.Validate(url); err != nil {
-		return err
-	}
-	return nil
 }

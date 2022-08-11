@@ -7,7 +7,11 @@ require (
 	gorm.io/driver/postgres v1.3.8
 )
 
-require github.com/satori/go.uuid v1.2.0 // indirect
+require (
+	github.com/gin-contrib/cors v1.4.0 // indirect
+	github.com/joho/godotenv v1.4.0 // indirect
+	github.com/satori/go.uuid v1.2.0 // indirect
+)
 
 require (
 	github.com/gin-contrib/sse v0.1.0 // indirect
