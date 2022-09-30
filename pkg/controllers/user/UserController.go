@@ -29,6 +29,18 @@ func Signup(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+
+	usenameAlreadyExist := database.DB.First(&input.Username)
+	if usenameAlreadyExist != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "User already exist"})
+		return
+	}
+	emailAlreadyExist := database.DB.First(&input.Email)
+	if emailAlreadyExist != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Email already exist"})
+		return
+	}
+
 	var user models.User
 
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(input.Password), bcrypt.DefaultCost)
