@@ -13,7 +13,7 @@ import (
 
 type CreateUrlForm struct {
 	URL    string `json:"url" binding:"required"`
-	UserID string `json:"user_id"`
+	UserID string `json:"user_id" gorm:"default:null"`
 }
 
 func ShowURLs(c *gin.Context) {
@@ -23,25 +23,31 @@ func ShowURLs(c *gin.Context) {
 }
 
 func CreateUrl(c *gin.Context) {
-
-	var url models.URL
+	var input CreateUrlForm
 
 	host := "http://localhost:8080/"
-	if err := c.ShouldBindJSON(&url); err != nil {
+	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
 	r, _ := regexp.Compile("^(http|https)://")
-	if url.URL == "" || !r.MatchString(url.URL) {
+	if input.URL == "" || !r.MatchString(input.URL) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid URL"})
 		return
 	}
 
+	var url models.URL
+
 	id := uuid.New()
 	url.ID = id.String()
-	shortUrl := useCase.GenerateShortLink(url.URL, url.ID)
+
+	url.URL = input.URL
+	url.UserID = input.UserID
+	shortUrl := useCase.GenerateShortLink(input.URL, input.UserID)
 	url.ShortURL = shortUrl
+	url.URL = input.URL
+
 	database.DB.Create(&url)
 	c.JSON(200, gin.H{
 		"message":   "short url created successfully",
