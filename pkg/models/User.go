@@ -8,4 +8,5 @@ type User struct {
 	Username string `json:"username" gorm:"size:255;not null;unique"binding:"required" `
 	Password string `json:"password" gorm:"size:255;not null;unique" binding:"required" sql:"password"`
 	Email    string `json:"email" gorm:"size:255;not null;unique" binding:"required" `
+	URL      []URL  `json:"url" gorm:"foreignKey:UserID" "gorm:"default:null"`
 }

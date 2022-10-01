@@ -32,6 +32,8 @@ func DatabaseConnection() {
 	if err != nil {
 		log.Println(err)
 	}
-	DB.AutoMigrate(&models.URL{})
+	var models = []interface{}{&models.User{}, &models.URL{}}
+
+	DB.AutoMigrate(models...)
 
 }
