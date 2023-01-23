@@ -63,7 +63,7 @@ The projects is under the MIT license. See the file [LICENSE](LICENSE) fore more
 
 ---
 
-Made with ♥ by Rafael and [Rocketeseat](https://youtu.be/w_el04y0cHo])👋 
+Made with ♥ by Rafael
 
 
 [![Linkedin Badge](https://img.shields.io/badge/-Rafael-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/tgmarinho/)](https://www.linkedin.com/in/rafael-mgr/)
