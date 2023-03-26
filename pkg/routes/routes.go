@@ -16,6 +16,7 @@ func HandleRequest() {
 
 	router.GET("/user", userControllers.ShowUser)
 	router.POST("/user", userControllers.Signup)
+	router.POST("/login", userControllers.Login)
 
 	router.Use(cors.Default())
 	router.Run(":8080")
