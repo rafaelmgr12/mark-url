@@ -11,8 +11,7 @@ services:
     env_file:
       - ./.env
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data  
-
+      - ./database-data:/var/lib/postgresql/data  
 
   server:
       build:
@@ -26,5 +25,3 @@ services:
       - "8080:8080"
       env_file:
       - ./.env
-volumes:
-  data: 
