@@ -1,6 +1,7 @@
 package userControllers
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -30,13 +31,15 @@ func Signup(c *gin.Context) {
 		return
 	}
 
-	usenameAlreadyExist := database.DB.First(&input.Username)
-	if usenameAlreadyExist != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "User already exist"})
+	usenameAlreadyExist := database.DB.Model(&models.User{}).Where("username = ?", input.Username).First(&models.User{}).Error
+	log.Println(usenameAlreadyExist)
+	if usenameAlreadyExist == nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Username already exist"})
 		return
 	}
-	emailAlreadyExist := database.DB.First(&input.Email)
-	if emailAlreadyExist != nil {
+
+	emailAlreadyExist := database.DB.Model(&models.User{}).Where("email = ?", input.Email).First(&models.User{}).Error
+	if emailAlreadyExist == nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Email already exist"})
 		return
 	}
