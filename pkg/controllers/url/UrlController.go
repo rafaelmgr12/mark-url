@@ -14,11 +14,12 @@ import (
 type CreateUrlForm struct {
 	URL    string `json:"url" binding:"required"`
 	UserID string `json:"user_id" gorm:"default:null"`
+	Public bool   `json:"public" gorm:"default:false"`
 }
 
 func ShowURLs(c *gin.Context) {
 	var urls []models.URL
-	database.DB.Find(&urls)
+	database.DB.Find(&urls).Where("public = ?", true)
 	c.JSON(200, urls)
 }
 
