@@ -1,7 +1,6 @@
 package userControllers
 
 import (
-	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -31,22 +30,25 @@ func ShowUser(c *gin.Context) {
 
 func Signup(c *gin.Context) {
 	var input SignupForm
+	var err error
 
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	usenameAlreadyExist := database.DB.Model(&models.User{}).Where("username = ?", input.Username).First(&models.User{}).Error
-	log.Println(usenameAlreadyExist)
-	if usenameAlreadyExist == nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Username already exist"})
+	u := models.User{}
+
+	err = database.DB.Model(models.User{}).Where("username = ?", input.Username).Take(&u).Error
+	println(err)
+	if err == nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "username already taken."})
 		return
 	}
 
-	emailAlreadyExist := database.DB.Model(&models.User{}).Where("email = ?", input.Email).First(&models.User{}).Error
-	if emailAlreadyExist == nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Email already exist"})
+	err = database.DB.Model(models.User{}).Where("email = ?", input.Email).Take(&u).Error
+	if err == nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "email already taken."})
 		return
 	}
 
