@@ -45,6 +45,9 @@ func CreateUrl(c *gin.Context) {
 
 	url.URL = input.URL
 	url.UserID = input.UserID
+	if input.UserID == "" || input.UserID == "null" {
+		input.UserID = uuid.New().String()
+	}
 	shortUrl := useCase.GenerateShortLink(input.URL, input.UserID)
 	url.Public = input.Public
 	url.ShortURL = shortUrl
