@@ -68,7 +68,7 @@ func HandleShortUrlRedirect(c *gin.Context) {
 		return
 	}
 	url.Hits++
-	database.DB.Save(&url)
+	database.DB.Model(&url).Update("hits", url.Hits)
 	c.Redirect(302, url.URL)
 }
 
