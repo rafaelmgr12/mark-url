@@ -19,7 +19,7 @@ type CreateUrlForm struct {
 
 func ShowURLs(c *gin.Context) {
 	var urls []models.URL
-	database.DB.Find(&urls).Where("public = ?", true)
+	database.DB.Where("public = ?", true).Find(&urls)
 	c.JSON(200, urls)
 }
 
@@ -46,6 +46,7 @@ func CreateUrl(c *gin.Context) {
 	url.URL = input.URL
 	url.UserID = input.UserID
 	shortUrl := useCase.GenerateShortLink(input.URL, input.UserID)
+	url.Public = input.Public
 	url.ShortURL = shortUrl
 	url.URL = input.URL
 
