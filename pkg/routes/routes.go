@@ -14,7 +14,6 @@ func HandleRequest() {
 	router.GET("/:short_url", urlControllers.HandleShortUrlRedirect)
 	router.NoRoute(urlControllers.RoutesNotFound)
 
-	router.GET("/user", userControllers.ShowUser)
 	router.POST("/user", userControllers.Signup)
 	router.POST("/login", userControllers.Login)
 
