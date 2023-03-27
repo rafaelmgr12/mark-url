@@ -22,12 +22,6 @@ type LoginForm struct {
 	Password string `json:"password" binding:"required"`
 }
 
-func ShowUser(c *gin.Context) {
-	var user models.User
-	database.DB.Find(&user)
-	c.JSON(200, user)
-}
-
 func Signup(c *gin.Context) {
 	var input SignupForm
 	var err error
